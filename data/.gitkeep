@@ -1,0 +1,2 @@
+Place parquet files here. See README.md for expected layout.
+This directory is in .gitignore — data files are not versioned.
