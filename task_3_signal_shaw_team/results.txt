@@ -1,0 +1,88 @@
+Building train table (stride=8) over ['2025-12-02', '2025-12-18', '2026-01-05', '2026-01-20', '2026-01-29']
+  2025-12-02: 1,344,408 trades
+  2025-12-18: 1,390,074 trades
+  2026-01-05: 958,235 trades
+  2026-01-20: 1,268,399 trades
+  2026-01-29: 1,562,770 trades
+
+Fitting per-tau HistGradientBoosting markout regressors (weighted by w):
+  tau= 30: fit on 6,523,886 trades
+  tau=120: fit on 6,523,886 trades
+  tau=300: fit on 6,523,886 trades
+
+Evaluating on FULL validation month (Feb 1-28), all trades, cutoff grid:
+  day  1 done (6,759,515 trades)
+  day  2 done (10,355,996 trades)
+  day  3 done (8,903,914 trades)
+  day  4 done (9,145,452 trades)
+  day  5 done (19,580,992 trades)
+  day  6 done (16,332,895 trades)
+  day  7 done (8,784,245 trades)
+  day  8 done (5,758,737 trades)
+  day  9 done (7,998,760 trades)
+  day 10 done (6,232,152 trades)
+  day 11 done (8,361,305 trades)
+  day 12 done (6,480,831 trades)
+  day 13 done (5,506,415 trades)
+  day 14 done (3,100,721 trades)
+  day 15 done (4,131,070 trades)
+  day 16 done (4,281,078 trades)
+  day 17 done (4,735,651 trades)
+  day 18 done (4,414,934 trades)
+  day 19 done (4,243,601 trades)
+  day 20 done (5,164,151 trades)
+  day 21 done (1,846,628 trades)
+  day 22 done (1,863,180 trades)
+  day 23 done (6,626,614 trades)
+  day 24 done (5,758,443 trades)
+  day 25 done (6,996,826 trades)
+  day 26 done (5,337,518 trades)
+  day 27 done (5,402,230 trades)
+  day 28 done (6,409,196 trades)
+
+==== VALIDATION (BTC, Feb 2026, 28 days, ALL trades) ====
+Score = PnL_kept - PnL_all ; constraint kept_turnover/day >= $500,000
+
+tau=30s   PnL_all (baseline) = -0.1877 bps
+    cutoff filtered%  PnL_kept    Score      kept$/day
+      none      0.0%   -0.1877  +0.0000 14,653,984,313 OK
+     -1.00      7.5%   -0.1741  +0.0136 13,555,452,087 OK
+     -0.50     17.5%   -0.1616  +0.0261 12,093,450,145 OK
+     -0.25     46.9%   -0.1026  +0.0851 7,778,444,447 OK
+     +0.00     78.9%   +0.1934  +0.3811 3,088,756,329 OK
+     +0.10     83.0%   +0.3081  +0.4958 2,493,806,888 OK
+     +0.25     86.1%   +0.3979  +0.5856 2,032,015,175 OK
+     +0.50     88.7%   +0.5075  +0.6953 1,659,061,802 OK
+     +1.00     92.0%   +0.5818  +0.7695 1,178,603,638 OK
+  -> best feasible Score = +0.7695 bps at cutoff +1.00
+
+tau=120s   PnL_all (baseline) = -0.1743 bps
+    cutoff filtered%  PnL_kept    Score      kept$/day
+      none      0.0%   -0.1743  +0.0000 14,653,862,724 OK
+     -1.00     20.9%   -0.2642  -0.0899 11,590,903,112 OK
+     -0.50     42.9%   -0.2421  -0.0678 8,360,602,382 OK
+     -0.25     46.4%   -0.2626  -0.0883 7,849,221,052 OK
+     +0.00     50.6%   -0.2923  -0.1180 7,241,130,927 OK
+     +0.10     52.4%   -0.2728  -0.0986 6,974,325,516 OK
+     +0.25     54.8%   -0.2541  -0.0798 6,626,904,634 OK
+     +0.50     63.9%   -0.1757  -0.0014 5,286,774,135 OK
+     +1.00     81.7%   +0.0757  +0.2500 2,685,101,060 OK
+  -> best feasible Score = +0.2500 bps at cutoff +1.00
+
+tau=300s   PnL_all (baseline) = -0.1556 bps
+    cutoff filtered%  PnL_kept    Score      kept$/day
+      none      0.0%   -0.1556  +0.0000 14,653,645,719 OK
+     -1.00     47.7%   +0.0667  +0.2223 7,661,951,293 OK
+     -0.50     49.5%   +0.0867  +0.2423 7,406,911,112 OK
+     -0.25     50.3%   +0.0788  +0.2345 7,282,008,236 OK
+     +0.00     51.2%   +0.0727  +0.2283 7,148,992,343 OK
+     +0.10     51.6%   +0.0671  +0.2227 7,097,305,579 OK
+     +0.25     52.1%   +0.0889  +0.2445 7,023,749,033 OK
+     +0.50     53.2%   +0.1442  +0.2998 6,864,004,079 OK
+     +1.00     56.0%   +0.1876  +0.3432 6,442,014,315 OK
+  -> best feasible Score = +0.3432 bps at cutoff +1.00
+
+==== SUMMARY (best feasible out-of-sample Score per horizon) ====
+  tau= 30s : Score = +0.7695 bps
+  tau=120s : Score = +0.2500 bps
+  tau=300s : Score = +0.3432 bps

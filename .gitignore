@@ -1,0 +1,10 @@
+# Data — large competition dataset, never committed
+*.parquet
+liquidation_task_dataset/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+.DS_Store
